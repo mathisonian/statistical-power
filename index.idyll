@@ -59,13 +59,13 @@ The p-value can be difficult to interpret, and is notoriously [easy to abuse](ht
 if it seems like there is one. If the p-value isn't low enough to reject the null hypothesis,
 this isn't evidence that the two groups are the same, rather it is only a _lack of evidence_
 that the two groups are different. Smaller differences between groups are harder to detect,
-and require more participants to be in the experiment in order to be identied.
+and require more participants to be in the experiment in order to be identified.
 
 ### Statistical Power
 
 The _statistical power_ of an experiment serves as a measure of how likely an experiment is
 to identify a difference of a certain size between two groups. Scientists can calculate the
-statistical power of a particular experimantal design in order to estimate how likely the
+statistical power of a particular experimental design in order to estimate how likely the
 experiment is to be able to identify the difference that they are hoping to see.
 
 This calculation is important because it can tell researchers if their experiment is likely
