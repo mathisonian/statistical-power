@@ -1,0 +1,127 @@
+[meta
+  title:"Statistical Power Analysis"
+  description:"An interactive exploration of statistical power, p-values, and experimental design."
+  shareImageUrl:"https://idyll.pub/post/statistical-power-d9ff5d116b4c883d22a7888f/static/images/share.png"
+  shareImageWidth:"1200"
+  shareImageHeight:"675" /]
+
+[Header
+  title:"Statistical Power Analysis"
+  fullWidth:true
+  subtitle:"A short interactive exploration of statistical power, p-values, and experimental design."
+  author:"Matthew Conlen"
+  authorLink:"https://mathisonian.com"
+  date:"February 6, 2019"
+   /]
+
+
+
+### Experimental Design 101
+
+
+Science is all about testing hypotheses. One common way that researchers do this is
+by running controlled experiments. While there are many different ways to do this,
+a common structure is to split the participants of the experiment into two groups:
+a _control group_ and a _treatment_ group.
+
+[img src:"./static/images/beaker.png" height:300 /]
+
+
+The control group acts as a baseline, serving as data points that tell how things
+are without any modification. The treatment group serves as the counterpoint, showing
+how things are with the treatment given. If you were interested in testing out a new heart
+medication, you would give it to members of the treatment group but not the control group, and
+take relevant measurements from each. This data can then be used to help assess whether or
+not there is a difference between the two groups. That is, did the drug work?
+
+### P Values
+
+In order to evaluate differences between groups, it is standard to run a statistical
+test that can help determine if there is a significant difference between the two groups.
+In order to run such a test, one first must define a _null hypothesis_, typically
+something along the lines of "there is no difference between these two groups."
+
+The result of a statistical test is a number, called a _p-value_. This number, a
+probability between 0 and 1, represents the likelihood that the data collected during
+the experiment would have been observed given that the null hypothesis
+there was actually no difference between the groups. If the p-value is below some
+predefined threshold — 0.05 is a common convention, though it varies across fields —
+then the null hypothesis is rejected, and your experiment serves as evidence that there
+is indeed a difference between the groups.
+
+[var name:"pValue" value:0.05 /]
+[div className:"dynamic-module" ]
+
+When using a p-value threshold of [Dynamic value:pValue min:0.01 max:0.99  step:0.01 /], there is a [Display value:pValue format:".0%" /] chance of incorrectly rejecting the null hypothesis — claiming that an effect exists when none does.
+[/div]
+
+The p-value can be difficult to interpret, and is notoriously [easy to abuse](https://fivethirtyeight.com/features/science-isnt-broken/), so it is best to treat them with care. The p-value doesn't say anything about _the size of the difference_, it only tells you
+if it seems like there is one. If the p-value isn't low enough to reject the null hypothesis,
+this isn't evidence that the two groups are the same, rather it is only a _lack of evidence_
+that the two groups are different. Smaller differences between groups are harder to detect,
+and require more participants to be in the experiment in order to be identied.
+
+### Statistical Power
+
+The _statistical power_ of an experiment serves as a measure of how likely an experiment is
+to identify a difference of a certain size between two groups. Scientists can calculate the
+statistical power of a particular experimantal design in order to estimate how likely the
+experiment is to be able to identify the difference that they are hoping to see.
+
+This calculation is important because it can tell researchers if their experiment is likely
+to yield any useful results, and can reveal the need for more participants to be recruited before
+a costly and time intensive experiment is conducted. Unfortunately, experimental power is not often
+reported in scientific studies, and it may not be covered in introductory statistics courses.
+
+Similar to a p-value, the statistical power is represented as a probability between 0 and 1. It
+represents the probability that performing this experiment will yield a significant result, given
+the number of participants, the effect size, and the p-value threshold.
+
+[var name:"alpha1" value:0.05 /]
+[var name:"effectSize1" value:0.5 /]
+[var name:"sampleSize" value:50 /]
+
+[div className:"dynamic-module" ]
+
+_Adjust the numbers to update the power calculation_ [br/]
+
+When conducting a comparison between two groups, given a p-value threshold of [Dynamic value:alpha1 min:0.01 max:0.99  step:0.01 /], a sample size of [Dynamic value:sampleSize min:5 max:500 step:1 format:"d" /],
+and an effect size of [Dynamic value:effectSize1 min:0.01 max:0.99  step:0.01 /] standard deviations, there is a [PowerCalculator sampleSize:sampleSize alpha:alpha effectSize:effectSize1 /] chance of seeing a significant result, given that the difference exists.
+[/div]
+
+A similar calculation can be performed to find the number of experimental participants needed given a target statistical power. This is useful to understand how many participants need to be recruited for an experiment to be likely to yield useful results, and can
+help researchers design experiments that are resource efficient.
+
+[var name:"power" value:0.8 /]
+[var name:"alpha" value:0.05 /]
+[var name:"effectSize" value:0.5 /]
+
+
+[div className:"dynamic-module" ]
+
+_Adjust the numbers to update the power calculation_ [br/]
+
+To conduct a comparison between two groups using a p-value threshold of [Dynamic value:alpha min:0.01 max:0.99  step:0.01 /], an effect size of [Dynamic value:effectSize min:0.02 max:0.99  step:0.01 /] standard deviations, and a target power of [Dynamic value:power  min:0.01 max:0.99  step:0.01 format:".0%" /], you will need [SampleSizeCalculator power:power alpha:alpha effectSize:effectSize /] participants.
+[/div]
+
+Notice that the size of the difference that one is trying to identify has a large impact on the power or
+number of participants needed, regardless of the p-value threshold. When considering experimental design,
+it is important to understand the parameters, and think through their implications, rather than simply
+following a rote formula.
+
+
+### Notes
+
+The calculations above are for demonstrational purposes. They assume the statistical test being performed is a two-tailed t-test.
+These numbers will not hold for all experiments, so make sure to perform them according to
+the specific constraints of your experiments.
+
+The code to calculate the power and sample size is adapted from [this page](http://hedwig.mgh.harvard.edu/sample_size/js/js_associative_quant.html). Thanks to David Schoenfeld for allowing me to use the code.
+
+This post made with [Idyll](https://idyll-lang.org), a markdown-based language for creative interactive articles like this one. See the
+source code for this article [here](https://github.com/mathisonian/statistical-power).
+
+If there are questions about any of the details of this article, feel free to reach out on [twitter](https://twitter.com/mathisonian).
+
+
+[analytics google:"UA-108267630-1" /]
