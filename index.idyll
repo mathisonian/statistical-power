@@ -86,7 +86,7 @@ the number of participants, the effect size, and the p-value threshold.
 _Adjust the numbers to update the power calculation_ [br/]
 
 When conducting a comparison between two groups, given a p-value threshold of [Dynamic value:alpha1 min:0.01 max:0.99  step:0.01 /], a sample size of [Dynamic value:sampleSize min:5 max:500 step:1 format:"d" /],
-and an effect size of [Dynamic value:effectSize1 min:0.01 max:0.99  step:0.01 /] standard deviations, there is a [PowerCalculator sampleSize:sampleSize alpha:alpha effectSize:effectSize1 /] chance of seeing a significant result, given that the difference exists.
+and an effect size of [Dynamic value:effectSize1 min:0.01 max:0.99  step:0.01 /] standard deviations, there is a [PowerCalculator sampleSize:sampleSize alpha:alpha1 effectSize:effectSize1 /] chance of seeing a significant result, given that the difference exists.
 [/div]
 
 A similar calculation can be performed to find the number of experimental participants needed given a target statistical power. This is useful to understand how many participants need to be recruited for an experiment to be likely to yield useful results, and can
